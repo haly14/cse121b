@@ -22,8 +22,8 @@ imageElement.setAttribute(`alt`, `Profile image of [Insert Name Variable]`);
 /* Step 5 - Array */
 const favoriteFoods = [`katsudon`, `ice cream`, `potatoes`];
 favoriteFoods.push(`sushi`);
-foodElement.innerHTML += `<br>${favFoods}`;
+foodElement.innerHTML += `<br>${favoriteFoods}`;
 favoriteFoods.shift();
-foodElement.innerHTML += `<br>${favFoods}`;
+foodElement.innerHTML += `<br>${favoriteFoods}`;
 favoriteFoods.pop();
-foodElement.innerHTML += `<br>${favFoods}`;
+foodElement.innerHTML += `<br>${favoriteFoods}`;
