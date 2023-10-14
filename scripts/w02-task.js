@@ -11,19 +11,19 @@ let profilePicture = `images/profile.png`;
 const nameElement = document.getElementById(`name`);
 const foodElement = document.getElementById(`food`);
 const yearElement = document.querySelector(`#year`);
-const imageElement = document.getElementById,emt
+const imageElement = document.getElementById(``);
 
 /* Step 4 - Adding Content */
-
-
-
-
-
+nameElement.innerHTML = `<strong>${fullName}</strong>`;
+yearElement.textContent = `currentYear`;
+imageElement.setAttribute(`src`, profilePicture);
+imageElement.setAttribute(`alt`, `Profile image of [Insert Name Variable]`);
 
 /* Step 5 - Array */
-
-
-
-
-
-
+const favoriteFoods = [`katsudon`, `ice cream`, `potatoes`];
+favoriteFoods.push(`sushi`);
+foodElement.innerHTML += `<br>${favFoods}`;
+favoriteFoods.shift();
+foodElement.innerHTML += `<br>${favFoods}`;
+favoriteFoods.pop();
+foodElement.innerHTML += `<br>${favFoods}`;
