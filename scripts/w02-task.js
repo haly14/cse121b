@@ -20,7 +20,7 @@ imageElement.setAttribute(`src`, profilePicture);
 imageElement.setAttribute(`alt`, `Profile image of [Insert Name Variable]`);
 
 /* Step 5 - Array */
-const favoriteFoods = [`katsudon`, `ice cream`, `potatoes`];
+let favoriteFoods = [`katsudon`, `ice cream`, `potatoes`];
 favoriteFoods.push(`sushi`);
 foodElement.innerHTML += `<br>${favoriteFoods}`;
 favoriteFoods.shift();
