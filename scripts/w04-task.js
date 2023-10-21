@@ -25,6 +25,30 @@ myProfile.placesLived.push(
         length: "14 years"
     }
 );
+myProfile.placesLived.push(
+    {
+        place: "Minnesota, USA",
+        length: "4 years"
+    }
+);
+myProfile.placesLived.push(
+    {
+        place: "Kobe, Japan",
+        length: "2 years"
+    }
+);
+myProfile.placesLived.push(
+    {
+        place: "Idaho, USA",
+        length: "4 years"
+    }
+);
+myProfile.placesLived.push(
+    {
+        place: "South Dakota, USA",
+        length: "3 years"
+    }
+);
 
 /* DOM Manipulation - Output */
 
