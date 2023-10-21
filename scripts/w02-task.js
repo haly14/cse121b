@@ -5,7 +5,7 @@
 /* Step 2 - Variables */
 let fullName = `Haley Atkinson`;
 let currentYear = `2023`;
-let profilePicture = `images/profile.png`;
+let profilePicture = `images/profile.jpg`;
 
 /* Step 3 - Element Variables */
 const nameElement = document.getElementById(`name`);
