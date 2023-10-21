@@ -5,18 +5,19 @@ const templesElement = document.querySelector('#temples')
 const templeList = [];
 
 /* async displayTemples Function */
-const displayTemples = (temples) => {};
+const displayTemples = (temples) => {
 templeList.forEach((temple) => {
     const article = document.createElement('article');
     const h3 = document.createElement('h3');
-    h3.textContent = templeName;
+    h3.textContent = temple.templeName;
     const img = document.createElement('img');
-    img.src = imageUrl;
-    img.alt = location;
+    img.src = temple.imageUrl;
+    img.alt = temple.location;
     article.appendChild(h3);
     article.appendChild(img);
     templesElement.appendChild(article);
   });
+};  
 
 /* async getTemples Function using fetch()*/
 const getTemples = async () => {
