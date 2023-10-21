@@ -15,7 +15,7 @@ let myProfile = {
         'Reading',
         'Video Games'
     ]
-    places lived: [
+    placesLived: [
 
     ]
 }
