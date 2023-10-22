@@ -23,7 +23,7 @@ document.getElementById("fetchData").addEventListener("click", () => {
         displayResult(data);
     })
     .catch(error => {
-        console.error("Error fetcing data:", error);
+        console.error("Error fetching data:", error);
     });
 });
 
