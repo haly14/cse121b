@@ -6,6 +6,14 @@
     <title>Carbon Emissions Calculator</title>
 </head>
 <body>
+    <label for="regionSelect">Select a Region:</label>
+    <select id="regionSelect">
+        <option value="west">West</option>
+        <option value="midwest">Midwest</option>
+        <option value="south">South</option>
+        <option value="eastCoast">East Coast</option>
+    </select>
+    
     <button id="fetchData">Fetch Electricity Consumption Data</button>
     <div id="result"></div>
     <script type="module" src="scripts/c-emissions.js"></script>
