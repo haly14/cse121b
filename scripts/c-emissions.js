@@ -38,7 +38,7 @@ document.getElementById("fetchData").addEventListener("click", () => {
             console.error("Error fetching data:", error);
         });
     } else {
-        alert("Please select a valid region from the list.");
+        alert(`Invalid region: ${selectedRegion}. Please select a valid region from the list.`);
     }
 });
 
@@ -54,12 +54,12 @@ function displayResult(data) {
 
         resultDiv.innerHTML = `
             <p>Carbon Emissions:</p>
-            <ul>
+            <ul/>
                 <li>Grams: ${carbonGrams} g</li>
                 <li>Pounds: ${carbonPounds} lb</li>
                 <li>Kilograms: ${carbonKilograms} kg</li>
                 <li>Metric Tons: ${carbonMetricTons} metric tons</li>
-            <ul/>
+            </ul>
         `;
     }
     else {
