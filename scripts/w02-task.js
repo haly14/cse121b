@@ -11,19 +11,24 @@ let profilePicture = `images/profile.jpg`;
 const nameElement = document.getElementById(`name`);
 const foodElement = document.getElementById(`food`);
 const yearElement = document.querySelector(`#year`);
-const imageElement = document.getElementById(``);
+const imageElement = document.getElementById(`image`);
 
 /* Step 4 - Adding Content */
 nameElement.innerHTML = `<strong>${fullName}</strong>`;
-yearElement.textContent = `currentYear`;
+yearElement.textContent = currentYear;
 imageElement.setAttribute(`src`, profilePicture);
-imageElement.setAttribute(`alt`, `Profile image of [Insert Name Variable]`);
+imageElement.setAttribute(`alt`, `Profile image of ${Haley Atkinson}`);
 
 /* Step 5 - Array */
 let favoriteFoods = [`katsudon`, `ice cream`, `potatoes`];
-favoriteFoods.push(`sushi`);
-foodElement.innerHTML += `<br>${favoriteFoods}`;
+
+let newFavoriteFood = `sushi`; // Your new favorite food
+favoriteFoods.push(newFavoriteFood);
+
+foodElement.innerHTML += `<br>${favoriteFoods.join('<br>')}`;
+
 favoriteFoods.shift();
-foodElement.innerHTML += `<br>${favoriteFoods}`;
+foodElement.innerHTML += `<br>${favoriteFoods.join('<br')}`;
+
 favoriteFoods.pop();
-foodElement.innerHTML += `<br>${favoriteFoods}`;
+foodElement.innerHTML += `<br>${favoriteFoods.join('<br')}`;
