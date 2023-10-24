@@ -1,3 +1,5 @@
+import { fetchData } from './api.js';
+
 const apiUrl = "https://www.carboninterface.com/api/v1/estimates";
 const apiKey = "h3JDvUjWW63J6UNG3vuyg";
 
@@ -22,21 +24,14 @@ document.getElementById("fetchData").addEventListener("click", () => {
             state: selectedStates
         };
 
-        fetch(apiUrl, {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${apiKey}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(requestData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            displayResult(data);
-        })
-        .catch(error => {
-            console.error("Error fetching data:", error);
-        });
+        // Use the fetchData function from the API module
+        fetchData(apiUrl, apiKey, requestData)
+          .then(data => {
+              displayResult(data);
+          })
+          .catch(error => {
+              console.error("Error fetching data:", error);
+          });
     } else {
         alert(`Invalid region: ${selectedRegion}. Please select a valid region from the list.`);
     }
@@ -54,15 +49,14 @@ function displayResult(data) {
 
         resultDiv.innerHTML = `
             <p>Carbon Emissions:</p>
-            <ul/>
+            <ul>
                 <li>Grams: ${carbonGrams} g</li>
                 <li>Pounds: ${carbonPounds} lb</li>
                 <li>Kilograms: ${carbonKilograms} kg</li>
                 <li>Metric Tons: ${carbonMetricTons} metric tons</li>
             </ul>
         `;
-    }
-    else {
+    } else {
         resultDiv.innerHTML = "Error: Unable to fetch data.";
     }
 }
