@@ -1,30 +1,45 @@
 const apiUrl = "https://www.carboninterface.com/api/v1/estimates";
 const apiKey = "h3JDvUjWW63J6UNG3vuyg";
 
-document.getElementById("fetchData").addEventListener("click", () => {
-    const requestData = {
-        type: "electricity",
-        electricity_unit: "mwh",
-        electricity_value: 42,
-        country: "us",
-        state: "fl"
-    };
+const statesByRegion = {
+    west: ["wa", "or", "ca", "nv", "ak", "hi", "az", "ut", "id"],
+    midwest: ["il", "in", "ia", "ks", "mi", "mn", "mo", "ne", "nd", "oh", "sd", "wi"],
+    south: ["al", "ar", "fl", "ga", "ky", "la", "ms", "nc", "sc", "tn", "tx", "ok"],
+    eastCoast: ["ct", "de", "dc", "me", "md", "ma", "nh", "nj", "ny", "pa", "ri", "vt", "va", "wv"]
+};
 
-    fetch(apiUrl, {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${apiKey}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(requestData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        displayResult(data);
-    })
-    .catch(error => {
-        console.error("Error fetching data:", error);
-    });
+document.getElementById("fetchData").addEventListener("click", () => {
+    const selectedRegion = document.getElementById("regionSelect").value;
+
+    if (statesByRegion[selectedRegion]) {
+        const selectedStates = statesByRegion[selectedRegion];
+
+        const requestData = {
+            type: "electricity",
+            electricity_unit: "mwh",
+            electricity_value: 42,
+            country: "us",
+            state: selectedStates
+        };
+
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${apiKey}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            displayResult(data);
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
+    } else {
+        alert("Please select a valid region from the list.");
+    }
 });
 
 function displayResult(data) {
