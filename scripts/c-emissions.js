@@ -16,47 +16,45 @@ document.getElementById("fetchData").addEventListener("click", () => {
     if (statesByRegion[selectedRegion]) {
         const selectedStates = statesByRegion[selectedRegion];
 
-        const requestData = {
-            type: "electricity",
-            electricity_unit: "mwh",
-            electricity_value: 42,
-            country: "us",
-            state: selectedStates
-        };
+        // Fetch and display data for each state in the selected region
+        Promise.all(selectedStates.map(state => {
+            const requestData = {
+                type: "electricity",
+                electricity_unit: "mwh",
+                electricity_value: 42,
+                country: "us",
+                state: state
+            };
 
-        // Use the fetchData function from the API module
-        fetchData(apiUrl, apiKey, requestData)
-          .then(data => {
-              displayResult(data);
-          })
-          .catch(error => {
-              console.error("Error fetching data:", error);
-          });
+            // Fetch data for each state
+            return fetchData(apiUrl, apiKey, requestData);
+        }))
+        .then(dataArray => {
+            // Process the data for each state and display it
+            const resultDiv = document.getElementById("result");
+            let resultHTML = "<p>Carbon Emissions:</p><ul>";
+
+            dataArray.forEach((data, index) => {
+                if (data && data.data && data.data.attributes) {
+                    const attributes = data.data.attributes;
+                    const carbonGrams = attributes.carbon_g;
+                    resultHTML += `<li>State: ${selectedStates[index]}</li>`;
+                    resultHTML += `<li>Grams: ${carbonGrams} g</li>`;
+                    resultHTML += "<hr>"; // Add a separator
+                } else {
+                    resultHTML += `<li>State: ${selectedStates[index]}</li>`;
+                    resultHTML += "Error: Unable to fetch data.";
+                    resultHTML += "<hr>"; // Add a separator
+                }
+            });
+
+            resultHTML += "</ul>";
+            resultDiv.innerHTML = resultHTML;
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
     } else {
         alert(`Invalid region: ${selectedRegion}. Please select a valid region from the list.`);
     }
 });
-
-function displayResult(data) {
-    const resultDiv = document.getElementById("result");
-
-    if (data && data.data && data.data.attributes) {
-        const attributes = data.data.attributes;
-        const carbonGrams = attributes.carbon_g;
-        const carbonPounds = attributes.carbon_lb;
-        const carbonKilograms = attributes.carbon_kg;
-        const carbonMetricTons = attributes.carbon_mt;
-
-        resultDiv.innerHTML = `
-            <p>Carbon Emissions:</p>
-            <ul>
-                <li>Grams: ${carbonGrams} g</li>
-                <li>Pounds: ${carbonPounds} lb</li>
-                <li>Kilograms: ${carbonKilograms} kg</li>
-                <li>Metric Tons: ${carbonMetricTons} metric tons</li>
-            </ul>
-        `;
-    } else {
-        resultDiv.innerHTML = "Error: Unable to fetch data.";
-    }
-}
